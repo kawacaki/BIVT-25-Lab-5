@@ -395,7 +395,7 @@ namespace Lab5
             if (colsA != rowsB) return null;
 
             if (rowsA == 0 || colsA == 0 || colsB == 0)
-                return new int[rowsA, colsB]; // Пустая матрица
+                return new int[rowsA, colsB]; 
 
             int[,] result = new int[rowsA, colsB];
 
@@ -417,40 +417,39 @@ namespace Lab5
 
         public int[][] Task11(int[,] matrix)
         {
-            if (matrix == null) return null;
-
-            int rows = matrix.GetLength(0);
-            int cols = matrix.GetLength(1);
-
-            // Создаем список для строк результата
-            List<int[]> resultList = new List<int[]>();
-
-            for (int i = 0; i < rows; i++)
+            int n = array.Length;
+            int sum = 0;
+            for (int i = 0; i < n; i++)
             {
-                int positiveCount = 0;
-                for (int j = 0; j < cols; j++)
-                {
-                    if (matrix[i, j] > 0)
-                    {
-                        positiveCount++;
-                    }
-                }
-
-                int[] positiveElements = new int[positiveCount];
-                int index = 0;
-
-                for (int j = 0; j < cols; j++)
-                {
-                    if (matrix[i, j] > 0)
-                    {
-                        positiveElements[index++] = matrix[i, j];
-                    }
-                }
-
-                resultList.Add(positiveElements);
+                sum += array[i].Length;
             }
+            int m = (int)Math.Ceiling(Math.Sqrt(sum));
+            answer = new int[m, m];
+            int row = 0;
+            int col = 0;
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (row < n)
+                    {
+                        answer[i, j] = array[row][col];
+                        col++;
+                        if (col >= array[row].Length)
+                        {
+                            row++;
+                            col = 0;
+                        }
+                    }
+                    else
+                    {
+                        answer[i, j] = 0;
+                    }
+                }
+            }
+        }
 
-            return resultList.ToArray();
+            return answer;
         }
         public int[,] Task12(int[][] array)
         {
