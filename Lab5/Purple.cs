@@ -417,37 +417,32 @@ namespace Lab5
 
         public int[][] Task11(int[,] matrix)
         {
-            int n = array.Length;
-            int sum = 0;
+            int[][] answer = null;
+
+            // code here
+
+            int n = matrix.GetLength(0);
+            int m = matrix.GetLength(1);
+            answer = new int[n][];
             for (int i = 0; i < n; i++)
             {
-                sum += array[i].Length;
-            }
-            int m = (int)Math.Ceiling(Math.Sqrt(sum));
-            answer = new int[m, m];
-            int row = 0;
-            int col = 0;
-            for (int i = 0; i < m; i++)
-            {
+                int count = 0;
                 for (int j = 0; j < m; j++)
                 {
-                    if (row < n)
+                    if (matrix[i, j] <= 0) count++;
+                }
+
+                answer[i] = new int[m - count];
+                count = 0;
+                for (int j = 0; j < m; j++)
+                {
+                    if (matrix[i, j] > 0)
                     {
-                        answer[i, j] = array[row][col];
-                        col++;
-                        if (col >= array[row].Length)
-                        {
-                            row++;
-                            col = 0;
-                        }
-                    }
-                    else
-                    {
-                        answer[i, j] = 0;
+                        answer[i][count++] = matrix[i, j];
                     }
                 }
             }
-        }
+            // end
 
             return answer;
         }
