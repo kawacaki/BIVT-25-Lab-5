@@ -395,7 +395,7 @@ namespace Lab5
             if (colsA != rowsB) return null;
 
             if (rowsA == 0 || colsA == 0 || colsB == 0)
-                return new int[rowsA, colsB]; 
+                return new int[rowsA, colsB]; // Пустая матрица
 
             int[,] result = new int[rowsA, colsB];
 
